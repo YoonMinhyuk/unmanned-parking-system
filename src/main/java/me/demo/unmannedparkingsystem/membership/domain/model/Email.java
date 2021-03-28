@@ -1,18 +1,22 @@
 package me.demo.unmannedparkingsystem.membership.domain.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import me.demo.unmannedparkingsystem.membership.domain.exception.InvalidEmailFormatException;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+@Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EqualsAndHashCode
 @ToString
 public class Email {
     private static final String SIMPLE_EMAIL_REG_EX = "^([a-zA-Z0-9]+)@([a-z]+)\\.([a-z]+)\\.?([a-z]+)$";
+
+    @Column(name = "email", nullable = false)
     private String value;
 
     public Email(final String value) {

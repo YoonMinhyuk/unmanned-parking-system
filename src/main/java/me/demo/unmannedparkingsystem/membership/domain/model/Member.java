@@ -1,19 +1,27 @@
 package me.demo.unmannedparkingsystem.membership.domain.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import me.demo.unmannedparkingsystem.membership.domain.exception.InvalidMemberNameException;
+
+import javax.persistence.*;
 
 import static java.util.Objects.isNull;
 
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EqualsAndHashCode(of = "email")
 @ToString
 public class Member {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Email email;
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
+
     private CellPhone cellPhone;
 
     public Member(
