@@ -22,18 +22,20 @@ class SeasonTicketTest {
     void testSeasonTicketInstantiationSuccess() {
         //given
         final Issuer issuer = new Issuer(1L);
-        final Vehicle vehicle = new Vehicle(
-                new VehiclesNumber(new VehicleTypeNumber(1), new VehiclePurposeOfUse("가"), new VehicleSerialNumber(1234))
+        final VehiclesNumber vehiclesNumber = new VehiclesNumber(
+                new VehicleTypeNumber(1),
+                new VehiclePurposeOfUse("가"),
+                new VehicleSerialNumber(1234)
         );
         final ValidityPeriod validityPeriod = ValidityPeriod.of(ValidityPeriod.Type.MONTHLY);
 
         //when
-        final SeasonTicket seasonTicket = new SeasonTicket(issuer, vehicle, validityPeriod);
+        final SeasonTicket seasonTicket = new SeasonTicket(issuer, vehiclesNumber, validityPeriod);
 
         //then
         assertThat(seasonTicket).isNotNull();
         assertThat(seasonTicket.getIssuer()).isEqualTo(issuer);
-        assertThat(seasonTicket.getVehicle()).isEqualTo(vehicle);
+        assertThat(seasonTicket.getVehiclesNumber()).isEqualTo(vehiclesNumber);
         assertThat(seasonTicket.getValidityPeriod()).isEqualTo(validityPeriod);
     }
 
@@ -42,28 +44,30 @@ class SeasonTicketTest {
     @DisplayName("SeasonTicket 생성 실패 테스트")
     void testSeasonTicketInstantiationFailure(
             final Issuer issuer,
-            final Vehicle vehicle,
+            final VehiclesNumber vehiclesNumber,
             final ValidityPeriod validityPeriod,
             final String errorMessage
     ) {
         //given when then
-        assertThatThrownBy(() -> new SeasonTicket(issuer, vehicle, validityPeriod))
+        assertThatThrownBy(() -> new SeasonTicket(issuer, vehiclesNumber, validityPeriod))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(errorMessage);
     }
 
     private static Stream<Arguments> testSeasonTicketInstantiationFailure() {
         final Issuer issuer = new Issuer(1L);
-        final Vehicle vehicle = new Vehicle(
-                new VehiclesNumber(new VehicleTypeNumber(1), new VehiclePurposeOfUse("가"), new VehicleSerialNumber(1234))
+        final VehiclesNumber vehiclesNumber = new VehiclesNumber(
+                new VehicleTypeNumber(1),
+                new VehiclePurposeOfUse("가"),
+                new VehicleSerialNumber(1234)
         );
         final ValidityPeriod validityPeriod = ValidityPeriod.of(ValidityPeriod.Type.MONTHLY);
 
         return Stream.of(
                 arguments(null, null, null, "issuer cannot be null"),
-                arguments(null, vehicle, validityPeriod, "issuer cannot be null"),
-                arguments(issuer, null, validityPeriod, "vehicle cannot be null"),
-                arguments(issuer, vehicle, null, "ValidityPeriod cannot be null")
+                arguments(null, vehiclesNumber, validityPeriod, "issuer cannot be null"),
+                arguments(issuer, null, validityPeriod, "vehiclesNumber cannot be null"),
+                arguments(issuer, vehiclesNumber, null, "ValidityPeriod cannot be null")
         );
     }
 
@@ -82,43 +86,45 @@ class SeasonTicketTest {
 
     private static Stream<Arguments> testEqualsAndHashCode() {
         final Issuer issuer = new Issuer(1L);
-        final Vehicle vehicle = new Vehicle(
-                new VehiclesNumber(new VehicleTypeNumber(1), new VehiclePurposeOfUse("가"), new VehicleSerialNumber(1234))
+        final VehiclesNumber vehiclesNumber = new VehiclesNumber(
+                new VehicleTypeNumber(1),
+                new VehiclePurposeOfUse("가"),
+                new VehicleSerialNumber(1234)
         );
         final ValidityPeriod validityPeriod = ValidityPeriod.of(ValidityPeriod.Type.MONTHLY);
 
         return Stream.of(
                 arguments(
-                        new SeasonTicket(issuer, vehicle, validityPeriod),
-                        new SeasonTicket(issuer, vehicle, validityPeriod),
+                        new SeasonTicket(issuer, vehiclesNumber, validityPeriod),
+                        new SeasonTicket(issuer, vehiclesNumber, validityPeriod),
                         true
                 ),
                 arguments(
-                        new SeasonTicket(issuer, vehicle, validityPeriod),
-                        new SeasonTicket(new Issuer(2L), vehicle, validityPeriod),
+                        new SeasonTicket(issuer, vehiclesNumber, validityPeriod),
+                        new SeasonTicket(new Issuer(2L), vehiclesNumber, validityPeriod),
                         false
                 ),
                 arguments(
-                        new SeasonTicket(issuer, vehicle, validityPeriod),
+                        new SeasonTicket(issuer, vehiclesNumber, validityPeriod),
                         new SeasonTicket(
                                 issuer,
-                                new Vehicle(new VehiclesNumber(
+                                new VehiclesNumber(
                                         new VehicleTypeNumber(2),
                                         new VehiclePurposeOfUse("나"),
                                         new VehicleSerialNumber(5678)
-                                )),
+                                ),
                                 validityPeriod
                         ),
                         false
                 ),
                 arguments(
-                        new SeasonTicket(issuer, vehicle, validityPeriod),
-                        new SeasonTicket(issuer, vehicle, ValidityPeriod.of(ValidityPeriod.Type.WEEKLY)),
+                        new SeasonTicket(issuer, vehiclesNumber, validityPeriod),
+                        new SeasonTicket(issuer, vehiclesNumber, ValidityPeriod.of(ValidityPeriod.Type.WEEKLY)),
                         false
                 ),
                 arguments(
-                        new SeasonTicket(issuer, vehicle, validityPeriod),
-                        new SeasonTicket(issuer, vehicle, ValidityPeriod.of(ValidityPeriod.Type.YEARLY)),
+                        new SeasonTicket(issuer, vehiclesNumber, validityPeriod),
+                        new SeasonTicket(issuer, vehiclesNumber, ValidityPeriod.of(ValidityPeriod.Type.YEARLY)),
                         false
                 )
         );

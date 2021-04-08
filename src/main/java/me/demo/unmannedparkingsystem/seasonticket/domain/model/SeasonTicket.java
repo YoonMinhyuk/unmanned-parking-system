@@ -1,6 +1,7 @@
 package me.demo.unmannedparkingsystem.seasonticket.domain.model;
 
 import lombok.*;
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.VehiclesNumber;
 
 import javax.persistence.*;
 
@@ -12,23 +13,23 @@ import static java.util.Objects.isNull;
 )
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@EqualsAndHashCode(of = {"issuer", "vehicle", "validityPeriod"})
+@EqualsAndHashCode(of = {"issuer", "vehiclesNumber", "validityPeriod"})
 @ToString
 public class SeasonTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Issuer issuer;
-    private Vehicle vehicle;
+    private VehiclesNumber vehiclesNumber;
     private ValidityPeriod validityPeriod;
 
     public SeasonTicket(
             final Issuer issuer,
-            final Vehicle vehicle,
+            final VehiclesNumber vehiclesNumber,
             final ValidityPeriod validityPeriod
     ) {
         setIssuer(issuer);
-        setVehicle(vehicle);
+        setVehiclesNumber(vehiclesNumber);
         setValidityPeriod(validityPeriod);
     }
 
@@ -37,9 +38,9 @@ public class SeasonTicket {
         this.issuer = issuer;
     }
 
-    private void setVehicle(final Vehicle vehicle) {
-        if (isNull(vehicle)) throw new IllegalArgumentException("vehicle cannot be null");
-        this.vehicle = vehicle;
+    private void setVehiclesNumber(final VehiclesNumber vehiclesNumber) {
+        if (isNull(vehiclesNumber)) throw new IllegalArgumentException("vehiclesNumber cannot be null");
+        this.vehiclesNumber = vehiclesNumber;
     }
 
     private void setValidityPeriod(final ValidityPeriod validityPeriod) {
