@@ -1,5 +1,9 @@
 package me.demo.unmannedparkingsystem.seasonticket.domain.model;
 
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.VehiclePurposeOfUse;
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.VehicleSerialNumber;
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.VehicleTypeNumber;
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.VehiclesNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

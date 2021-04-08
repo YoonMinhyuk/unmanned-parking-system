@@ -1,6 +1,7 @@
-package me.demo.unmannedparkingsystem.seasonticket.domain.model;
+package me.demo.unmannedparkingsystem.shared.model.vehiclesnumber;
 
-import me.demo.unmannedparkingsystem.seasonticket.domain.exception.InvalidVehicleTypeException;
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.InvalidVehicleTypeException;
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.VehicleTypeNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

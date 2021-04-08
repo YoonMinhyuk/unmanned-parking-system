@@ -1,7 +1,6 @@
-package me.demo.unmannedparkingsystem.seasonticket.domain.model;
+package me.demo.unmannedparkingsystem.shared.model.vehiclesnumber;
 
 import lombok.*;
-import me.demo.unmannedparkingsystem.seasonticket.domain.exception.InvalidVehiclePurposeOfUseException;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

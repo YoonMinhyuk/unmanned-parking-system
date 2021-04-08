@@ -1,6 +1,7 @@
 package me.demo.unmannedparkingsystem.seasonticket.domain.model;
 
 import lombok.*;
+import me.demo.unmannedparkingsystem.shared.model.vehiclesnumber.VehiclesNumber;
 
 import javax.persistence.Embeddable;
 

@@ -1,4 +1,4 @@
-package me.demo.unmannedparkingsystem.seasonticket.domain.exception;
+package me.demo.unmannedparkingsystem.shared.model.vehiclesnumber;
 
 import me.demo.unmannedparkingsystem.shared.exception.BaseException;
 
